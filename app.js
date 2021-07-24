@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose"); // mongodb lib
 const expressValidator = require("express-validator");
+const fs = require("fs");
 
 dotenv.config();
 
@@ -22,6 +23,20 @@ mongoose
 
 mongoose.connection.on("error", (err) => {
   console.log(`db connection error  : ${err.message}`);
+});
+//api docs route
+
+app.get("/", (req, res) => {
+  fs.readFile("docs/apiDocs.json", (err, data) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    console.log(data);
+    const docs = JSON.parse(data);
+    res.json(docs);
+  });
 });
 
 //bring routes
