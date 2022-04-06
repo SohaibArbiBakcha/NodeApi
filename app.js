@@ -1,6 +1,6 @@
 const express = require("express"); //server
 const app = express();
-const morgen = require("morgan"); // for chow us the state of request
+const morgen = require("morgan"); // for show us the state of request
 const dotenv = require("dotenv"); // envirments var
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
